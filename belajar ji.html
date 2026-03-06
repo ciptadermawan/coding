@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muh. Cipta Dermawan | Digital Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('backgroundcip.png'); 
+            background-size: cover; 
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            color: white;
+            transition: 0.5s;
+        }
+
+        /* Animasi halusnya */
+        .fade-in { animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-img {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .btn-link, .btn-next {
+            display: block;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            text-decoration: none;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-next { background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255,255,255,0.4); }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px 0; padding: 10px;
+            border-radius: 8px; text-align: left;
+            border-left: 4px solid #23d5ab;
+        }
+
+        .btn-music {
+            display: inline-block;
+            margin-top: 20px; padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px; color: white;
+            cursor: pointer; font-size: 0.85rem;
+        }
+
+        /* Sembunyikan halaman 2 secara default */
+        #page2 { display: none; }
+    </style>
+</head>
+<body>
+
+    <audio id="backsound" loop>
+        <source src='backsongcip.m4a' type='audio/mp4'>
+    </audio>
+
+    <div class="glass-card fade-in">
+        
+        <div id="page1">
+            <img src="cipta profil.jpg" alt="Cipta" class="profile-img">
+            <h1>M Cipta Dermawan</h1>
+            <p>Website ini sebagai perantara saya untuk belajar coding secara otodidak. Website ini akan berubah seiring kemampuan saya ngoding.</p>
+            <a href="https://instagram.com/ciptadermawan" target="_blank" class="btn-link">📸 Instagram Saya</a>
+        
+            <button class="btn-next" onclick="showPage(2)">Halaman Selanjutnya ➡️</button>
+        </div>
+
+        <div id="page2">
+            <h1>Tentang Saya 🚀</h1>
+            <div class="skill-item">Software : Visual Studio Code</div>
+            <div class="skill-item">Tujuan : untuk belajar</div>
+            <div class="skill-item">Bingung mau isi apa lagi.</div>
+            <button class="btn-next" onclick="showPage(1)" style="margin-top: 20px;">⬅️ Kembali ke Profil</button>
+        </div>
+
+        <div class="btn-music" id="musicBtn" onclick="toggleMusic()">🎵 Play Music</div>
+    </div>
+
+    <script>
+        var audio = document.getElementById('backsound');
+        var btn = document.getElementById('musicBtn');
+
+        // Fungsi Tukar Halaman
+        function showPage(pageNumber) {
+            var p1 = document.getElementById('page1');
+            var p2 = document.getElementById('page2');
+            
+            if(pageNumber === 2) {
+                p1.style.display = 'none';
+                p2.style.display = 'block';
+                p2.classList.add('fade-in');
+            } else {
+                p2.style.display = 'none';
+                p1.style.display = 'block';
+                p1.classList.add('fade-in');
+            }
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play().then(() => { btn.innerHTML = "⏸️ Pause Music"; });
+            } else {
+                audio.pause();
+                btn.innerHTML = "🎵 Play Music";
+            }
+        }
+    </script>
+</body>
+</html>
